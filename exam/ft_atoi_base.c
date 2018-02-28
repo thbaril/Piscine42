@@ -6,7 +6,7 @@
 /*   By: thbaril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 21:58:40 by thbaril           #+#    #+#             */
-/*   Updated: 2018/02/27 22:22:52 by thbaril          ###   ########.fr       */
+/*   Updated: 2018/02/28 03:29:01 by thbaril          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,22 @@ int	ft_atoi_base(const char *str, int base)
 {
 	int	r;
 	int	i;
+	int	n;
 
 	i = 0;
 	r = 0;
+	n = 1;
+	if (str[0] == '-')
+	{
+		n = -1;
+		i++;
+	}
 	while (str[i])
 	{
-		r *= base;
-		r += ft_value(str[i]);
+		if (n < 0)
+			r = (r * base) - ft_value(str[i]);
+		else
+			r = (r * base) + ft_value(str[i]);
 		i++;
 	}
 	return (r);
